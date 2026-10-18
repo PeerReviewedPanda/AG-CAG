@@ -1,0 +1,12 @@
+approved_data/
+private_review/
+*.xlsx
+*.xls
+*.pth
+*.pt
+*.pkl
+*.npz
+*.jsonl
+__pycache__/
+*.pyc
+.venv/
