@@ -1,4 +1,7 @@
 approved_data/
+private_data/
+data1.csv
+data2.csv
 private_review/
 *.xlsx
 *.xls

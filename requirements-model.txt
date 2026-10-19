@@ -1,0 +1,2 @@
+# Required only for agcag_example.py; metric calculators use the standard library.
+torch>=2.2,<3
