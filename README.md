@@ -2,6 +2,12 @@
 
 This public repository is a **limited algorithm example and evaluation package** for the associated IEEE TIM manuscript. It includes a stand-alone AG-CAG network example, metric-verification scripts, and synthetic tests. It does **not** include Data 1, Data 2, experimental measurements or predictions, trained weights, or the full training and acquisition pipeline.
 
+<p align="center">
+  <img src="assets/fig1_agcag_architecture.png" alt="Figure 1: causal preprocessing and AG-CAG network architecture" width="760">
+</p>
+
+<p align="center"><em>Fig. 1. Causal preprocessing and AG-CAG architecture, reproduced from the revised manuscript.</em></p>
+
 The reported target is a **sensor-derived operational zero-rate bias proxy**. Agreement with that proxy is not an independently calibrated absolute-bias measurement and does not demonstrate performance under nonzero rotation.
 
 ## What can be checked
