@@ -8,7 +8,7 @@ This public repository is a **limited algorithm example and evaluation package**
 
 <p align="center"><em>Fig. 1. Causal preprocessing and AG-CAG architecture, reproduced from the revised manuscript.</em></p>
 
-The reported target is a **sensor-derived operational zero-rate bias proxy**. Agreement with that proxy is not an independently calibrated absolute-bias measurement and does not demonstrate performance under nonzero rotation.
+The study uses an explicitly defined **sensor-derived operational zero-rate bias proxy** to evaluate causal thermal-drift compensation under the reported stationary conditions. This common measurement target supports matched estimator comparisons, held-out numerical checks, and cross-unit analysis. Absolute calibration and nonzero-rate operation are distinct validation settings beyond the experiments reported here.
 
 ## What can be checked
 
