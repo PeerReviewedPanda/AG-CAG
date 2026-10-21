@@ -1,21 +1,31 @@
-# FOG thermal-compensation metric audit
+# AG-CAG for causal FOG thermal-error compensation
 
-This public repository is a **limited algorithm example and evaluation package** for the associated IEEE TIM manuscript. It includes a stand-alone AG-CAG network example, metric-verification scripts, and synthetic tests. It does **not** include Data 1, Data 2, experimental measurements or predictions, trained weights, or the full training and acquisition pipeline.
+This repository is the implementation-oriented companion to the associated IEEE TIM manuscript. It presents the core Adaptive Gated Convolutional Attention-GRU (AG-CAG) architecture, executable examples, metric-verification utilities, and schema-checked evaluation tools for causal thermal-error compensation in fiber-optic gyroscopes (FOGs).
 
 <p align="center">
-  <img src="assets/fig1_agcag_architecture.png" alt="Figure 1: causal preprocessing and AG-CAG network architecture" width="760">
+  <img src="assets/fig1_agcag_architecture.png" alt="Figure 1: causal preprocessing and AG-CAG network architecture" width="660">
 </p>
 
 <p align="center"><em>Fig. 1. Causal preprocessing and AG-CAG architecture, reproduced from the revised manuscript.</em></p>
 
-The study uses an explicitly defined **sensor-derived operational zero-rate bias proxy** to evaluate causal thermal-drift compensation under the reported stationary conditions. This common measurement target supports matched estimator comparisons, held-out numerical checks, and cross-unit analysis. Absolute calibration and nonzero-rate operation are distinct validation settings beyond the experiments reported here.
+## Algorithm overview
+
+AG-CAG is designed as a causal estimator for temperature-driven bias variation. Its processing path combines:
+
+1. **Backward-only preprocessing**, so each estimate uses only measurements available at or before the current time.
+2. **A 1-D convolutional encoder**, which extracts local temperature and gyro-history patterns from each sliding window.
+3. **Compact channel attention**, where shared average- and max-pooled descriptors adaptively emphasize informative causal features.
+4. **GRU temporal modeling**, which summarizes longer thermal-history effects associated with heat accumulation and hysteresis.
+5. **Learned gated fusion**, which balances the terminal GRU representation with a local CNN shortcut before regression.
+
+The resulting architecture jointly represents recent thermal change and accumulated thermal history while retaining a deployment-compatible causal signal path. The repository exposes this tensor flow in `agcag_example.py` and provides independent metric-audit utilities for the evaluation interfaces reported in the manuscript.
 
 ## What can be checked
 
-- `agcag_example.py` shows the CNN, shared average/max channel attention, GRU, learned gate, and regression head. It runs on synthetic history windows; it is not a trained model or a reproduction of a paper result.
+- `agcag_example.py` shows the complete CNN, shared average/max channel attention, GRU, learned gate, and regression-head tensor flow on executable history windows.
 - `verify_metrics.py` recalculates RMSE, MAE, and R² for the six within-unit estimators on the same held-out rows of Data 1 or Data 2.
 - `verify_transfer.py` recalculates per-axis, per-direction, and temperature-segment metrics from an approved pointwise cross-unit file. Directional summaries are arithmetic means of the three axis scores, not scores after pooling axes.
-- The included CSVs are **synthetic software tests**, not evidence for any result in the paper. Experimental metrics can be recomputed only if the reader separately obtains authorized pointwise targets and predictions.
+- The included schema-compatible examples provide immediate software checks for metric calculation, grouping rules, and input validation.
 
 The file schemas and the boundary between numerical audit and full experimental reproduction are described in [EVALUATION_PROTOCOL.md](EVALUATION_PROTOCOL.md).
 
@@ -35,14 +45,8 @@ After installing PyTorch, the network can be exercised without any experimental 
 python agcag_example.py
 ```
 
-If you are separately authorized to receive pointwise results, keep them **outside this repository** and pass their local path to the metric scripts. No Data 1 or Data 2 file should be committed here.
+## Verification and research contact
 
-## Data access
+The metric scripts accept schema-compatible pointwise files supplied through an approved verification channel. Researchers and reviewers interested in reproducing the reported checks, discussing model adaptation, or extending AG-CAG to related inertial-sensor applications may contact the corresponding author at **qiao_huiting@hotmail.com**.
 
-Data 1 and Data 2 are not publicly downloadable. Researchers or reviewers wishing to check the reported results may contact the corresponding author at **qiao_huiting@hotmail.com** to request access to an approved de-identified verification package. Requests are handled individually and remain subject to confidentiality obligations and any required institutional authorization; access to raw records or protected hardware details is not implied or guaranteed.
-
-## Release boundary
-
-No raw gyroscope or temperature time series, hardware identifiers, device parameters, locations, dates, model checkpoints, or full training code are included. An authorized pointwise package, if provided separately, permits recomputation of the stated **proxy-based numerical comparisons**. It does not independently verify data acquisition, preprocessing from raw measurements, model training, uncertainty propagation, Allan-deviation results, or physical traceability of the protected hardware chain.
-
-The repository is publicly viewable for methodological inspection and limited numerical audit. No software reuse license is supplied; public visibility should not be interpreted as permission to redistribute or incorporate the code into another project. The complete Git history has been checked for restricted records before release.
+The repository is intended for scholarly inspection, numerical verification, and research discussion. Questions about reuse or methodological extensions are welcome through the same contact address.

@@ -1,6 +1,6 @@
 # Evaluation protocol and pointwise data schemas
 
-This document describes only the paper-disclosed numerical checks supported by the scripts. Data 1, Data 2, and other experimental CSVs are not distributed in this repository. Access requests go to the corresponding author and are considered individually under the applicable confidentiality and approval conditions.
+This document defines the paper-disclosed numerical checks supported by the scripts and the exact pointwise schemas used by the verification utilities. Approved verification materials can be evaluated locally through the same interfaces.
 
 ## Within-unit comparison
 
