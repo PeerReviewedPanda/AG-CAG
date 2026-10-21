@@ -23,7 +23,7 @@ class MetricTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / "bad.csv"
             path.write_text(
-                "sample_index,target_proxy,svr,random_forest,standard_lstm,patch_transformer,tsmixer,agcag\n"
+                "sample_index,target_proxy,svr,random_forest,standard_lstm,patch_transformer,timemixer,agcag\n"
                 "0,0,0,0,0,0,0,0\n2,1,1,1,1,1,1,1\n", encoding="utf-8"
             )
             with self.assertRaises(ValueError):

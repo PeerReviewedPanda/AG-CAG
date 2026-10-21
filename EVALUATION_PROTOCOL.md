@@ -9,7 +9,7 @@ Data 1 is the gradual temperature-change record; Data 2 is the severe temperatur
 An **individually provided and authorized** pointwise CSV for each record can be checked locally with `verify_metrics.py`. Its exact header is:
 
 ```text
-sample_index,target_proxy,svr,random_forest,standard_lstm,patch_transformer,tsmixer,agcag
+sample_index,target_proxy,svr,random_forest,standard_lstm,patch_transformer,timemixer,agcag
 ```
 
 Each row is one held-out 200-sample window. `sample_index` is consecutive from zero within the provided test set and is not an original file row number or timestamp. All target and prediction values are in degrees per hour. The same constant may be subtracted from the target and every prediction in a record without changing RMSE, MAE, or R²; no method-specific recentering is allowed.

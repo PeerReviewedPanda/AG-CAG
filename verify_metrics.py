@@ -10,7 +10,7 @@ from pathlib import Path
 
 METHODS = (
     "svr", "random_forest", "standard_lstm",
-    "patch_transformer", "tsmixer", "agcag",
+    "patch_transformer", "timemixer", "agcag",
 )
 COLUMNS = ("sample_index", "target_proxy", *METHODS)
 

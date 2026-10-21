@@ -1,4 +1,4 @@
-sample_index,target_proxy,svr,random_forest,standard_lstm,patch_transformer,tsmixer,agcag
+sample_index,target_proxy,svr,random_forest,standard_lstm,patch_transformer,timemixer,agcag
 0,0.00,0.04,0.02,0.03,0.06,0.03,0.02
 1,0.10,0.08,0.11,0.12,0.04,0.12,0.09
 2,0.20,0.16,0.19,0.23,0.28,0.17,0.21
